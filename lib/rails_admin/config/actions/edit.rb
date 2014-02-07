@@ -9,7 +9,7 @@ module RailsAdmin
         end
 
         register_instance_option :http_methods do
-          [:get, :put]
+          [:get, :post]
         end
 
         register_instance_option :controller do
@@ -22,7 +22,7 @@ module RailsAdmin
                 format.js   { render @action.template_name, layout: false }
               end
 
-            elsif request.put? # UPDATE
+            elsif request.post? # UPDATE
               satisfy_strong_params!
               sanitize_params_for!(request.xhr? ? :modal : :update)
 
