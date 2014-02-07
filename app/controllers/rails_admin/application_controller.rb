@@ -9,7 +9,7 @@ module RailsAdmin
 
   class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
-    protect_from_forgery with: :exception
+    # protect_from_forgery with: :exception
     
     newrelic_ignore if defined?(NewRelic) && respond_to?(:newrelic_ignore)
 
