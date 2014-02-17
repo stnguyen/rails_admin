@@ -24,11 +24,11 @@ module RailsAdmin
           end
 
           register_instance_option :inline_add do
-            true
+            false
           end
 
           register_instance_option :inline_edit do
-            true
+            false
           end
 
           def selected_id
