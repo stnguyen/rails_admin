@@ -8,20 +8,24 @@ module RailsAdmin
           true
         end
 
+        register_instance_option :route_fragment do
+          'bulk_delete'
+        end
+
         register_instance_option :http_methods do
-          [:post, :delete]
+          [:get, :post]
         end
 
         register_instance_option :controller do
           proc do
 
-            if request.post? # BULK DELETE
+            if request.get? # BULK DELETE
 
               @objects = list_entries(@model_config, :destroy)
 
               render @action.template_name
 
-            elsif request.delete? # BULK DESTROY
+            elsif request.post? # BULK DESTROY
 
               @objects = list_entries(@model_config, :destroy)
               processed_objects = @abstract_model.destroy(@objects)

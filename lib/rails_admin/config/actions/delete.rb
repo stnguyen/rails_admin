@@ -13,7 +13,7 @@ module RailsAdmin
         end
 
         register_instance_option :http_methods do
-          [:get, :delete]
+          [:get, :post]
         end
 
         register_instance_option :authorization_key do
@@ -29,7 +29,7 @@ module RailsAdmin
                 format.js   { render @action.template_name, layout: false }
               end
 
-            elsif request.delete? # DESTROY
+            elsif request.post? # DESTROY
 
               redirect_path = nil
               @auditing_adapter && @auditing_adapter.delete_object(@object, @abstract_model, _current_user)
