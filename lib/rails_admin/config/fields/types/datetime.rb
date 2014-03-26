@@ -52,11 +52,11 @@ module RailsAdmin
 
           def formatted_date_value
             value = bindings[:object].new_record? && self.value.nil? && !default_value.nil? ? default_value : self.value
-            value.nil? ? '' : I18n.l(value.in_time_zone, format: localized_date_format).strip
+            value.nil? ? '' : I18n.l(value.try(:in_time_zone), format: localized_date_format).strip
           end
 
           def formatted_time_value
-            value.nil? ? '' : I18n.l(value.in_time_zone, format: localized_time_format)
+            value.nil? ? '' : I18n.l(value.try(:in_time_zone), format: localized_time_format)
           end
 
           # Ruby to javascript formatting options translator
@@ -142,7 +142,7 @@ module RailsAdmin
           end
 
           register_instance_option :formatted_value do
-            if time = value
+            if time = value.try(:in_time_zone)
               I18n.l(time.in_time_zone, format: strftime_format)
             else
               ''.html_safe
