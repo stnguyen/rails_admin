@@ -45,8 +45,8 @@ module RailsAdmin
 
             # Parse normalized date strings using time zone
             def parse_date_string(date_string)
-              date_string.to_datetime
-              # ::Time.zone.parse(date_string)
+              # date_string.to_datetime
+              ::Time.zone.parse(date_string)
             end
           end
 
