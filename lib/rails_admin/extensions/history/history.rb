@@ -1,13 +1,13 @@
-class RailsAdmin::History < ActiveRecord::Base
-  self.table_name = :rails_admin_histories
+class RailsAdmin::History
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  IGNORED_ATTRS = Set[:id, :created_at, :created_on, :deleted_at, :updated_at, :updated_on, :deleted_on]
+  store_in :collection => "rails_admin_histories"
 
-  if defined?(ActiveModel::MassAssignmentSecurity) && ancestors.include?(ActiveModel::MassAssignmentSecurity)
-    attr_accessible :message, :item, :table, :username
-  end
-
-  default_scope { order('id DESC') }
+  field :message, type: String
+  field :item, type: String
+  field :table, type: String
+  field :username, type: String
 
   def self.latest
     limit(100)

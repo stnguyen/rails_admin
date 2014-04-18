@@ -17,7 +17,7 @@ module RailsAdmin
         end
 
         def update_object(object, model, user, changes)
-          ::RailsAdmin::History.create_history_item(changes.collect { |k, v| "#{k}: #{v.collect(&:inspect).join(' -> ')}" }, object, model, user)
+          ::RailsAdmin::History.create_history_item('Edited', object, model, user)
         end
 
         def create_object(object, model, user)
