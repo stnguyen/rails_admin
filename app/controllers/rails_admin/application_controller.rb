@@ -82,5 +82,10 @@ module RailsAdmin
     def rails_admin_controller?
       true
     end
+
+    rescue_from CanCan::AccessDenied do |exception|
+      flash[:error] = exception.message
+      redirect_to main_app.new_admin_session_url
+    end
   end
 end
