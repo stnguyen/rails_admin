@@ -50,7 +50,7 @@ module RailsAdmin
           def current_ability
             # use _current_user instead of default current_user so it works with
             # whatever current user method is defined with RailsAdmin
-            @current_ability ||= @ability.new(_current_user, request.domain)
+            @current_ability ||= @ability.new(_current_user, request.host)
           end
         end
       end
